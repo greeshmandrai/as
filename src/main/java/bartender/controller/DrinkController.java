@@ -24,9 +24,7 @@ public class DrinkController {
 
 	@RequestMapping(value = "/drinkrequest", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String createDrinkRequest(@RequestBody Cocktail cocktail) {
-
-		return "success";
-		// return cocktailService.addTodo(cocktail);
+		return cocktailService.createCocktail(cocktail);
 	}
 	
 	@RequestMapping(value = "/cocktails", method = RequestMethod.GET)

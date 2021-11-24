@@ -1,5 +1,8 @@
 package bartender.domain;
 
-public class CocktailRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+
+public interface CocktailRepository extends JpaRepository<Cocktail, Long>, JpaSpecificationExecutor<Cocktail> {
 
 }

@@ -12,13 +12,25 @@ import javax.persistence.Table;
 public class Cocktail {
 
 	@Id
-	@Column(name="id")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int id;
-	
-	 @Column(name="todoName")
-         String todoName; 
+
+	@Column(name = "customer_no")
+	String customerNo;
+
+	@Column(name = "drink_type")
+	String drinkType;
+
+	@Column(name = "status")
+	String status;
 	 
-	 @Column(name="Status")
-         boolean Status;
+	 
+	 /*CREATE TABLE `cocktail` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `customer_no` varchar(100) NOT NULL,
+   `drink_type` varchar(255) NOT NULL,
+    `status` varchar(80) NOT NULL,
+    PRIMARY KEY (`id`)
+) */
 }
