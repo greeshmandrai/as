@@ -1,34 +1,36 @@
 package bartender.service;
 
+import java.util.List;
+
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import bartender.dao.CocktailDao;
 import bartender.domain.Cocktail;
-import bartender.domain.CocktailRepositoryWrapper;
 
 @Service
 public class CocktailService {
-	
-	 private final CocktailRepositoryWrapper cocktailRepository;
 
-	    @Autowired
-	    public CocktailService(final CocktailRepositoryWrapper cocktailRepository) {
-	        this.cocktailRepository = cocktailRepository;
-	    }
+	private final CocktailDao cocktailDao;
+	private final PrepareDrinkService prepareDrinkService;
 
-
-	public String createCocktail(Cocktail cocktail) {
-		this.cocktailRepository.save(cocktail);
-		return "success";
+	@Autowired
+	public CocktailService(final CocktailDao cocktailRepository, final PrepareDrinkService prepareDrinkService) {
+		this.cocktailDao = cocktailRepository;
+		this.prepareDrinkService = prepareDrinkService;
 	}
-	
-	/*@Autowired
-	TodoDao todoDao;
+
+	@Transactional
+	public String createCocktail(Cocktail cocktail) {
+		this.prepareDrinkService.makeDrink(cocktail);
+		this.cocktailDao.save(cocktail);
+		return "Your order for" + cocktail.getDrinkType() + "is placed successfully";
+	}
 
 	@Transactional
 	public List<Cocktail> getAllCocktails() {
-		return todoDao.getAllCocktails();
-	}*/
-	
-
+		return cocktailDao.getAllCocktails();
+	}
 }

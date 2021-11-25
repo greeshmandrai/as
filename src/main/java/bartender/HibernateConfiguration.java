@@ -1,4 +1,4 @@
-package bartender.domain;	
+package bartender;	
 import java.util.Properties;
 
 import javax.sql.DataSource;
